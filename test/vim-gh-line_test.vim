@@ -89,7 +89,7 @@ func! s:testCommit(sid)
     let l:fileDir = resolve(expand("%:p:h"))
     let l:cdDir = "cd '" . fileDir . "'; "
 
-    let l:branch = system(l:cdDir . 'git rev-parse --abbrev-ref HEAD')
+    let l:branch = system(l:cdDir . 'git rev-parse --abbrev-ref --short HEAD')
 
     let g:gh_use_canonical = 0
     let l:act = s:callWithSID(a:sid, 'Commit', l:cdDir)
@@ -384,4 +384,3 @@ func! s:tryRunAllTests()
 endfunction
 
 command!  RunAllTests call s:tryRunAllTests()
-
